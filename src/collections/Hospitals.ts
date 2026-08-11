@@ -39,6 +39,7 @@ export const Hospitals: CollectionConfig = {
       defaultValue: 'aspire-style',
       options: [
         { label: 'Aspire Style', value: 'aspire-style' },
+        { label: 'Modern Clinical (Medilo)', value: 'modern-clinical' },
         { label: 'Minimal (coming soon)', value: 'minimal' },
       ],
       admin: {
@@ -104,6 +105,188 @@ export const Hospitals: CollectionConfig = {
         { name: 'latitude', type: 'number', required: true },
         { name: 'longitude', type: 'number', required: true },
       ],
+    },
+    {
+      name: 'heroSlides',
+      type: 'array',
+      fields: [
+        {
+          name: 'headline',
+          type: 'text',
+          required: true,
+          admin: { description: 'Slide headline' },
+        },
+        {
+          name: 'subtext',
+          type: 'textarea',
+          admin: { description: 'Slide subtext or description' },
+        },
+        {
+          name: 'phone',
+          type: 'text',
+          admin: { description: 'Phone number for CTA' },
+        },
+        {
+          name: 'cta1Text',
+          type: 'text',
+          admin: { description: 'First CTA button text' },
+        },
+        {
+          name: 'cta1Link',
+          type: 'text',
+          admin: { description: 'First CTA button link' },
+        },
+        {
+          name: 'cta2Text',
+          type: 'text',
+          admin: { description: 'Second CTA button text' },
+        },
+        {
+          name: 'cta2Link',
+          type: 'text',
+          admin: { description: 'Second CTA button link' },
+        },
+        {
+          name: 'heroIcon',
+          type: 'upload',
+          relationTo: 'media',
+          admin: { description: 'Hero icon image' },
+        },
+      ],
+      admin: { description: 'Hero slider slides (3 recommended)' },
+    },
+    {
+      name: 'stats',
+      type: 'array',
+      fields: [
+        {
+          name: 'label',
+          type: 'text',
+          required: true,
+          admin: { description: 'Stat label (e.g., "Years of Experience")' },
+        },
+        {
+          name: 'value',
+          type: 'text',
+          required: true,
+          admin: { description: 'Stat value (e.g., "26+")' },
+        },
+      ],
+      admin: { description: 'Counter stats (4 recommended)' },
+    },
+    {
+      name: 'whyChooseUs',
+      type: 'array',
+      fields: [
+        {
+          name: 'icon',
+          type: 'upload',
+          relationTo: 'media',
+          admin: { description: 'Feature icon' },
+        },
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          admin: { description: 'Feature title' },
+        },
+        {
+          name: 'blurb',
+          type: 'textarea',
+          admin: { description: 'Feature description' },
+        },
+      ],
+      admin: { description: 'Why choose us features (6 recommended)' },
+    },
+    {
+      name: 'videoCTA',
+      type: 'group',
+      fields: [
+        {
+          name: 'backgroundImage',
+          type: 'upload',
+          relationTo: 'media',
+          admin: { description: 'Video CTA background image' },
+        },
+        {
+          name: 'videoLink',
+          type: 'text',
+          admin: { description: 'Video URL (YouTube/Vimeo)' },
+        },
+        {
+          name: 'headline',
+          type: 'text',
+          admin: { description: 'Video CTA headline' },
+        },
+      ],
+      admin: { description: 'Video CTA section' },
+    },
+    {
+      name: 'serviceOfferings',
+      type: 'blocks',
+      blocks: [
+        {
+          slug: 'service-tab',
+          interfaceName: 'ServiceTab',
+          fields: [
+            {
+              name: 'tabLabel',
+              type: 'text',
+              required: true,
+              admin: { description: 'Tab label (e.g., "Cardiology")' },
+            },
+            {
+              name: 'heading',
+              type: 'text',
+              required: true,
+              admin: { description: 'Section heading' },
+            },
+            {
+              name: 'image',
+              type: 'upload',
+              relationTo: 'media',
+              admin: { description: 'Section image' },
+            },
+            {
+              name: 'checklist',
+              type: 'array',
+              fields: [
+                {
+                  name: 'item',
+                  type: 'text',
+                  required: true,
+                  admin: { description: 'Checklist item' },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      admin: { description: 'Flexible service offering tabs (4 recommended)' },
+    },
+    {
+      name: 'partnerLogos',
+      type: 'array',
+      fields: [
+        {
+          name: 'logo',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+          admin: { description: 'Partner logo' },
+        },
+        {
+          name: 'name',
+          type: 'text',
+          admin: { description: 'Partner name (for alt text)' },
+        },
+        {
+          name: 'link',
+          type: 'text',
+          admin: { description: 'Partner website link' },
+        },
+      ],
+      admin: { description: 'Partner/client logos' },
     },
   ],
 }
