@@ -497,7 +497,7 @@ export interface Hospital {
   /**
    * Controls which site template renders this hospital.
    */
-  template: 'aspire-style' | 'minimal';
+  template: 'aspire-style' | 'modern-clinical' | 'minimal';
   /**
    * Centralized: Any admin can manage this hospital. Dedicated: Only assigned hospital admins can manage.
    */
@@ -526,8 +526,155 @@ export interface Hospital {
     latitude: number;
     longitude: number;
   };
+  /**
+   * Hero slider slides (3 recommended)
+   */
+  heroSlides?:
+    | {
+        /**
+         * Slide headline
+         */
+        headline: string;
+        /**
+         * Slide subtext or description
+         */
+        subtext?: string | null;
+        /**
+         * Phone number for CTA
+         */
+        phone?: string | null;
+        /**
+         * First CTA button text
+         */
+        cta1Text?: string | null;
+        /**
+         * First CTA button link
+         */
+        cta1Link?: string | null;
+        /**
+         * Second CTA button text
+         */
+        cta2Text?: string | null;
+        /**
+         * Second CTA button link
+         */
+        cta2Link?: string | null;
+        /**
+         * Hero icon image
+         */
+        heroIcon?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Counter stats (4 recommended)
+   */
+  stats?:
+    | {
+        /**
+         * Stat label (e.g., "Years of Experience")
+         */
+        label: string;
+        /**
+         * Stat value (e.g., "26+")
+         */
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Why choose us features (6 recommended)
+   */
+  whyChooseUs?:
+    | {
+        /**
+         * Feature icon
+         */
+        icon?: (number | null) | Media;
+        /**
+         * Feature title
+         */
+        title: string;
+        /**
+         * Feature description
+         */
+        blurb?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Video CTA section
+   */
+  videoCTA?: {
+    /**
+     * Video CTA background image
+     */
+    backgroundImage?: (number | null) | Media;
+    /**
+     * Video URL (YouTube/Vimeo)
+     */
+    videoLink?: string | null;
+    /**
+     * Video CTA headline
+     */
+    headline?: string | null;
+  };
+  /**
+   * Flexible service offering tabs (4 recommended)
+   */
+  serviceOfferings?: ServiceTab[] | null;
+  /**
+   * Partner/client logos
+   */
+  partnerLogos?:
+    | {
+        /**
+         * Partner logo
+         */
+        logo: number | Media;
+        /**
+         * Partner name (for alt text)
+         */
+        name?: string | null;
+        /**
+         * Partner website link
+         */
+        link?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServiceTab".
+ */
+export interface ServiceTab {
+  /**
+   * Tab label (e.g., "Cardiology")
+   */
+  tabLabel: string;
+  /**
+   * Section heading
+   */
+  heading: string;
+  /**
+   * Section image
+   */
+  image?: (number | null) | Media;
+  checklist?:
+    | {
+        /**
+         * Checklist item
+         */
+        item: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'service-tab';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2275,8 +2422,73 @@ export interface HospitalsSelect<T extends boolean = true> {
         latitude?: T;
         longitude?: T;
       };
+  heroSlides?:
+    | T
+    | {
+        headline?: T;
+        subtext?: T;
+        phone?: T;
+        cta1Text?: T;
+        cta1Link?: T;
+        cta2Text?: T;
+        cta2Link?: T;
+        heroIcon?: T;
+        id?: T;
+      };
+  stats?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        id?: T;
+      };
+  whyChooseUs?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        blurb?: T;
+        id?: T;
+      };
+  videoCTA?:
+    | T
+    | {
+        backgroundImage?: T;
+        videoLink?: T;
+        headline?: T;
+      };
+  serviceOfferings?:
+    | T
+    | {
+        'service-tab'?: T | ServiceTabSelect<T>;
+      };
+  partnerLogos?:
+    | T
+    | {
+        logo?: T;
+        name?: T;
+        link?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServiceTab_select".
+ */
+export interface ServiceTabSelect<T extends boolean = true> {
+  tabLabel?: T;
+  heading?: T;
+  image?: T;
+  checklist?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
