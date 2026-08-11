@@ -1,0 +1,52 @@
+{
+  "name": "@marline/backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Payload CMS API + Admin (multi-tenant)",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev --port 3000 --webpack",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start --port 3000",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "import:drupal-clinics": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/import-drupal-clinics.ts",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
+    "test:isolation": "cross-env ISOLATION_TEST=1 ISOLATION_DATABASE_URL=postgres://postgres:postgres@localhost:5433/marline_test NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts tests/int/tenant-isolation.int.spec.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@marline/shared": "workspace:*",
+    "@payloadcms/db-postgres": "3.87.1",
+    "@payloadcms/next": "3.87.1",
+    "@payloadcms/plugin-multi-tenant": "3.87.1",
+    "@payloadcms/richtext-lexical": "3.87.1",
+    "@payloadcms/ui": "3.87.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "16.4.7",
+    "graphql": "^16.8.2",
+    "next": "16.2.6",
+    "payload": "3.87.1",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "sharp": "0.34.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@types/node": "22.19.9",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "^9.16.0",
+    "eslint-config-next": "16.2.6",
+    "pg": "^8.23.0",
+    "prettier": "^3.4.2",
+    "tsx": "4.22.4",
+    "typescript": "5.7.3",
+    "vite-tsconfig-paths": "6.0.5",
+    "vitest": "4.0.18"
+  }
+}

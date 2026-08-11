@@ -1,31 +1,26 @@
-version: '3'
-
 services:
-  payload:
-    image: node:18-alpine
+  postgres:
+    image: postgres:16-alpine
     ports:
-      - '3000:3000'
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: marline
     volumes:
-      - .:/home/node/app
-      - node_modules:/home/node/app/node_modules
-    working_dir: /home/node/app/
-    command: sh -c "yarn install && yarn dev"
-    depends_on:
-      - mongo
-    env_file:
-      - .env
+      - pgdata:/var/lib/postgresql/data
 
-  mongo:
-    image: mongo:latest
+  postgres-test:
+    image: postgres:16-alpine
     ports:
-      - '27017:27017'
-    command:
-      - --storageEngine=wiredTiger
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: marline_test
     volumes:
-      - data:/data/db
-    logging:
-      driver: none
+      - pgdata_test:/var/lib/postgresql/data
 
 volumes:
-  data:
-  node_modules:
+  pgdata:
+  pgdata_test:
